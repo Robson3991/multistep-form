@@ -8,7 +8,8 @@ const data: ApiData = {
     '18 - 59',
     '60+'
   ],
-  footer: 'If you re under 16 ask dult for a help' 
+  footer: 'If you re under 16 ask dult for a help',
+  type: 'radio'
 }
 
 export default function handler(
