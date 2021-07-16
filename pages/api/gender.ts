@@ -2,13 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { ApiData } from 'types';
 
 const data: ApiData = {
-  title: 'What therapy or consultation are you looking for?',
+  title: 'What is your gender',
   options: [
-    'Indyvidual',
-    'Couple therapy',
-    'For children'
-  ],
-  type: 'radio'
+    'Female',
+    'Male',
+    'Other'
+  ]
 }
 
 export default function handler(

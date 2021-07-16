@@ -24,6 +24,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-primary);
     font-size: 1.8rem;
     font-weight: 400;
+    background: var(--color-lightgrey);
+    color: var(--color-primary);
   }
 
   a {
@@ -32,6 +34,10 @@ const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, p {
     margin: 0;
+  }
+
+  h1 {
+    font-size: 2.8rem;
   }
 
   /* Chrome, Safari, Edge, Opera */

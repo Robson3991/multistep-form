@@ -3,4 +3,7 @@ export type ApiData = {
   options: Array<string>;
   subtitle?: string;
   footer?: string;
+  type?: 'radio';
 }
+
+export type StepT = 'kind' | 'gender' | 'age' | 'diseases' | 'language';

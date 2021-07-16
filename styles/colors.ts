@@ -4,6 +4,7 @@ const colors = css`
   :root {
     --color-white: #ffffff;
     --color-black: #000000;
+    --color-black-rgb: 0, 0, 0;
     --color-grey: #edf1f2;
     --color-lightgrey: #f6f6f6;
 
