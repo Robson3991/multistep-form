@@ -5,11 +5,15 @@ const Container = styled.label`
   position: relative;
   width: 100%;
   max-width: 400px;
-  padding-right: 35px;
-  margin: 0 auto 12px;
+  padding: 10px 35px 10px 0;
+  margin: 0 auto;
   cursor: pointer;
   font-size: 22px;
   user-select: none;
+
+  &:not(:last-child) {
+    border-bottom: 2px solid var(--color-grey);
+  }
 `;
 
 const Input = styled.input`
@@ -20,12 +24,13 @@ const Input = styled.input`
 
 const Checkmark = styled.span`
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
   height: 30px;
   width: 30px;
   border: 3px solid var(--color-primary-light);
   padding: 5px;
+  transform: translateY(-50%);
   transition: background-color var(--transition), border-color var(--transition);
 
   &:after {
