@@ -7,7 +7,8 @@ const data: ApiData = {
     'Female',
     'Male',
     'Other'
-  ]
+  ],
+  type: 'radio'
 }
 
 export default function handler(

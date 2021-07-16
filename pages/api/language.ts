@@ -10,7 +10,8 @@ const data: ApiData = {
     'Spanish',
     'Italian',
     'Russian',
-    'German'
+    'German',
+    'Arabic',
   ],
   subtitle: 'Choose at least one language or more if you need.'
 }

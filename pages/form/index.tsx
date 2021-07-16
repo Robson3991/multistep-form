@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { GetServerSideProps } from 'next';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import RadioButton from 'components/atoms/RadioButton';
-import { StepT, ApiData } from 'types';
-import { Container, Wrapper, Options } from './form.style';
+import Option from 'components/atoms/Option';
+import { StepT } from 'types';
+import { Container, Wrapper, Options, Buttons } from './form.style';
 import Paragraph from 'components/atoms/Paragraph';
 import Loader from 'components/atoms/Loader';
+import Button from 'components/atoms/Button';
+import Link from 'next/link';
 
 interface PageProps {
   slug: string;
@@ -25,12 +26,20 @@ function usePost(slug: string) {
 
 export default function Category({ slug }: PageProps) {
   const steps: Array<StepT> = ['kind', 'gender', 'age', 'diseases', 'language'];
-  const [activeStep, setActiveStep] = useState<StepT>(steps[0]);
-  const { data, error, isFetching } = usePost(activeStep);
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const { data, error, isFetching } = usePost(steps[activeStep]);
+
+  const handleChange = (direction: 'prev' | 'next') => {
+    setActiveStep((prevState) => {
+      return direction == 'next' ? prevState + 1 : prevState - 1;
+    });
+  };
+
+  const isRadio = data?.type === 'radio';
 
   return (
     <Container>
-      <Wrapper>
+      <Wrapper bordered={!isRadio}>
         {isFetching && <Loader />}
         {error?.response && (
           <Paragraph isError>there was a problem while fetching data</Paragraph>
@@ -38,18 +47,37 @@ export default function Category({ slug }: PageProps) {
         {data && (
           <>
             <h2>{data.title}</h2>
-            <Options>
+            <Options columns={!isRadio}>
               {data.options.map((option: string) => {
-                return data?.type === 'radio' ? (
-                  <RadioButton label={option} />
+                return isRadio ? (
+                  <Option label={option} name="radio" type="radio" />
                 ) : (
-                  <p>test</p>
+                  <Option label={option} type="checkbox" />
                 );
               })}
             </Options>
           </>
         )}
       </Wrapper>
+      <Buttons>
+        {activeStep !== 0 && (
+          <Button prev onClick={() => handleChange('prev')}>
+            Prev
+          </Button>
+        )}
+        {activeStep !== steps.length - 1 && (
+          <Button light onClick={() => handleChange('next')}>
+            Next
+          </Button>
+        )}
+        {activeStep === steps.length - 1 && (
+          <Link href="/therapists">
+            <Button light as="a">
+              Search
+            </Button>
+          </Link>
+        )}
+      </Buttons>
     </Container>
   );
 }
