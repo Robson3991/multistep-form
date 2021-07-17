@@ -18,6 +18,7 @@ export default function Category() {
   const state = useAppSelector((state) => state.form[steps[activeStep]]);
 
   const handleChangeStep = (direction: 'prev' | 'next') => {
+    setOptions([]);
     setActiveStep((prevState) => {
       return direction == 'next' ? prevState + 1 : prevState - 1;
     });
