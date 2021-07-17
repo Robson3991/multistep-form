@@ -75,6 +75,8 @@ interface RadioButtonProps {
   label: string;
   type: 'radio' | 'checkbox';
   name?: string;
+  value: string;
+  [x: string]: any;
 }
 
 const CheckIcon = styled(Check)`
@@ -95,10 +97,12 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   label,
   type = 'radio',
   name,
+  value,
+  ...rest
 }) => (
   <Container>
     {label}
-    <Input type={type} name={name} />
+    <Input type={type} name={name} value={value} {...rest} />
     <Checkmark type={type}>{type == 'checkbox' && <CheckIcon />}</Checkmark>
   </Container>
 );

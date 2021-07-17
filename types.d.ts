@@ -4,6 +4,10 @@ export type ApiData = {
   subtitle?: string;
   footer?: string;
   type?: 'radio';
-}
+};
 
 export type StepT = 'kind' | 'gender' | 'age' | 'diseases' | 'language';
+
+export interface ParsedUrlQuery {
+  [key: string]: string | string[];
+}
