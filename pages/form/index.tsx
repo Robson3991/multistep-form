@@ -64,8 +64,9 @@ export default function Category() {
           <>
             <h2>{data.title}</h2>
             <Options columns={!isRadio}>
-              {data.options.map((option: string) => (
+              {data.options.map((option: string, index: number) => (
                 <Option
+                  key={index}
                   label={option}
                   name={isRadio ? 'radio' : ''}
                   type={isRadio ? 'radio' : 'checkbox'}
