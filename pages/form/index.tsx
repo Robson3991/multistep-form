@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Option from 'components/atoms/Option';
 import { StepsT } from 'types';
 import Container from 'components/atoms/Container';
-import { Wrapper, Options, Buttons } from './form.style';
+import Wrapper from 'components/atoms/Wrapper';
+import { Options, Buttons } from './form.style';
 import Paragraph from 'components/atoms/Paragraph';
 import Loader from 'components/atoms/Loader';
 import Button from 'components/atoms/Button';
@@ -97,7 +98,7 @@ export default function Category() {
           </Button>
         )}
         {activeStep === steps.length - 1 && (
-          <Link href="/therapists">
+          <Link href="/list">
             <Button light as="a">
               Search
             </Button>
