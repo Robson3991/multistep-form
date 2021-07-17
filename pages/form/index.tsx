@@ -8,21 +8,24 @@ import Loader from 'components/atoms/Loader';
 import Button from 'components/atoms/Button';
 import Link from 'next/link';
 import useForm from 'api/form';
-import { useAppSelector } from 'store/hooks';
+import { useAppSelector, useAppDispatch } from 'store/hooks';
 import useFormQuery from './useFormQuery';
+import { formStepChange } from 'store/slices/form';
 
 export default function Category() {
   const steps: StepsT = ['kind', 'gender', 'age', 'diseases', 'language'];
-  const [activeStep, setActiveStep] = useState<number>(0);
+  const activeStep = useAppSelector((state) => state.form.step);
   const { data, error, isFetching } = useForm(steps[activeStep]);
   const [options, setOptions] = useState<Array<string> | []>([]);
+
   const state = useAppSelector((state) => state.form[steps[activeStep]]);
 
+  const dispatch = useAppDispatch();
   const handleChangeStep = (direction: 'prev' | 'next') => {
     setOptions([]);
-    setActiveStep((prevState) => {
-      return direction == 'next' ? prevState + 1 : prevState - 1;
-    });
+    dispatch(
+      formStepChange(direction == 'next' ? activeStep + 1 : activeStep - 1),
+    );
   };
 
   const isRadio = data?.type === 'radio';

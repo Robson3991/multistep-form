@@ -8,11 +8,12 @@ interface FormState {
   age: Array<string>;
   diseases: Array<string>;
   language: Array<string>;
+  step: number;
 }
 
 type FormPayload = {
   type: StepT;
-  data: string | Array<string>;
+  data: Array<string>;
 };
 
 const inistialState: FormState = {
@@ -21,6 +22,7 @@ const inistialState: FormState = {
   age: [],
   diseases: [],
   language: [],
+  step: 0,
 };
 
 const formSlice = createSlice({
@@ -30,10 +32,13 @@ const formSlice = createSlice({
     formDataChange: (state, action: PayloadAction<FormPayload>) => {
       state[action.payload.type] = action.payload.data;
     },
+    formStepChange: (state, action: PayloadAction<number>) => {
+      state.step = action.payload;
+    },
   },
 });
 
-export const { formDataChange } = formSlice.actions;
+export const { formDataChange, formStepChange } = formSlice.actions;
 export const selectForm = (state: RootState) => state.form;
 
 export default formSlice.reducer;
