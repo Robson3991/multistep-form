@@ -1,4 +1,7 @@
 import Head from 'next/head';
+import Container from 'components/atoms/Container';
+import Button from 'components/atoms/Button';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -9,7 +12,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>hello</main>
+      <main>
+        <Container>
+          <Link href="/form">
+            <Button as="a">Go to form page</Button>
+          </Link>
+        </Container>
+      </main>
     </div>
   );
 }

@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
 interface WrapperProps {
   bordered: boolean;
 }
@@ -26,8 +17,9 @@ export const Wrapper = styled.div<WrapperProps>`
   box-shadow: 0px 0px 12px 2px rgba(var(--color-black-rgb), 0.15);
   border-radius: 5px;
 
-  ${({ bordered }) => bordered && `border: 2px solid var(--color-primary-light)`};
-  
+  ${({ bordered }) =>
+    bordered && `border: 2px solid var(--color-primary-light)`};
+
   h2 {
     text-align: center;
     max-width: 450px;
@@ -43,7 +35,9 @@ export const Options = styled.div<OptionsProps>`
   width: 100%;
   overflow: scroll;
 
-  ${({ columns }) => columns && `
+  ${({ columns }) =>
+    columns &&
+    `
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0 60px;

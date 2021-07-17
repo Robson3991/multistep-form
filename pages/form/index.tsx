@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Option from 'components/atoms/Option';
 import { StepsT } from 'types';
-import { Container, Wrapper, Options, Buttons } from './form.style';
+import Container from 'components/atoms/Container';
+import { Wrapper, Options, Buttons } from './form.style';
 import Paragraph from 'components/atoms/Paragraph';
 import Loader from 'components/atoms/Loader';
 import Button from 'components/atoms/Button';
