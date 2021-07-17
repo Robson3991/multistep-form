@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { useQuery } from 'react-query';
 import Option from 'components/atoms/Option';
 import { StepT } from 'types';
 import { Container, Wrapper, Options, Buttons } from './form.style';
@@ -8,26 +6,16 @@ import Paragraph from 'components/atoms/Paragraph';
 import Loader from 'components/atoms/Loader';
 import Button from 'components/atoms/Button';
 import Link from 'next/link';
+import useForm from 'api/form';
 
 interface PageProps {
   slug: string;
 }
 
-const getDataBySlug = async (slug: string) => {
-  const { data } = await axios.get(`/api/${slug}`);
-  return data;
-};
-
-function usePost(slug: string) {
-  return useQuery(['post', slug], () => getDataBySlug(slug), {
-    enabled: !!slug,
-  });
-}
-
 export default function Category({ slug }: PageProps) {
   const steps: Array<StepT> = ['kind', 'gender', 'age', 'diseases', 'language'];
   const [activeStep, setActiveStep] = useState<number>(0);
-  const { data, error, isFetching } = usePost(steps[activeStep]);
+  const { data, error, isFetching } = useForm(steps[activeStep]);
 
   const handleChange = (direction: 'prev' | 'next') => {
     setActiveStep((prevState) => {
