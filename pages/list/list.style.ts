@@ -11,8 +11,8 @@ export const Config = styled.div`
   display: flex;
   align-items: center;
   margin: 50px 0;
+`;
 
-  span {
-    margin-right: 150px;
-  }
+export const ConfigTitle = styled.span`
+  margin-right: 150px;
 `;

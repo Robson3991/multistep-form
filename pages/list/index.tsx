@@ -1,5 +1,5 @@
 import Dropdown from 'components/molecules/Dropdown';
-import { Header, Config } from './list.style';
+import { Header, Config, ConfigTitle } from './list.style';
 
 const selectOptions = ['Recommended', 'Lower price', 'Highest price'];
 
@@ -8,7 +8,7 @@ export default function () {
     <Header>
       <h1>List of therapists</h1>
       <Config>
-        <span>Sort by:</span>
+        <ConfigTitle>Sort by:</ConfigTitle>
         <Dropdown options={selectOptions} />
       </Config>
     </Header>
