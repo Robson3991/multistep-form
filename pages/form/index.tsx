@@ -1,25 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Option from 'components/atoms/Option';
-import { StepT } from 'types';
+import { StepsT } from 'types';
 import { Container, Wrapper, Options, Buttons } from './form.style';
 import Paragraph from 'components/atoms/Paragraph';
 import Loader from 'components/atoms/Loader';
 import Button from 'components/atoms/Button';
 import Link from 'next/link';
 import useForm from 'api/form';
-import { useAppDispatch } from 'store/hooks';
 import { useAppSelector } from 'store/hooks';
-import { formDataChange } from 'store/slices/form';
-import { useRouter } from 'next/router';
+import useFormQuery from './useFormQuery';
 
 export default function Category() {
-  const steps: Array<StepT> = ['kind', 'gender', 'age', 'diseases', 'language'];
+  const steps: StepsT = ['kind', 'gender', 'age', 'diseases', 'language'];
   const [activeStep, setActiveStep] = useState<number>(0);
   const { data, error, isFetching } = useForm(steps[activeStep]);
-  const dispatch = useAppDispatch();
   const [options, setOptions] = useState<Array<string> | []>([]);
-  const router = useRouter();
-  const { query } = router;
   const state = useAppSelector((state) => state.form[steps[activeStep]]);
 
   const handleChangeStep = (direction: 'prev' | 'next') => {
@@ -51,30 +46,11 @@ export default function Category() {
     }
   };
 
-  useEffect(() => {
-    if (options.length) {
-      const queryCopy = { ...query, [steps[activeStep]]: options.join(',') };
-      let queryString = '';
-      for (const property in queryCopy) {
-        queryString += `${property}=${queryCopy[property]}&`;
-      }
-      router.push(`?${queryString}`, undefined, { shallow: true });
-    }
-  }, [options]);
-
-  useEffect(() => {
-    for (const property in query) {
-      if (steps.includes(property as StepT)) {
-        const data = (query[property] as StepT).split(',');
-        dispatch(
-          formDataChange({
-            type: property as StepT,
-            data,
-          }),
-        );
-      }
-    }
-  }, [query]);
+  useFormQuery({
+    options,
+    steps,
+    activeStep,
+  });
 
   return (
     <Container>
