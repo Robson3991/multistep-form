@@ -60,7 +60,7 @@ export default function Category() {
 
   return (
     <Container>
-      <Wrapper bordered={!isRadio}>
+      <Wrapper centered bordered={!isRadio}>
         {isFetching && <Loader />}
         {(error as any)?.response && (
           <Paragraph isError>there was a problem while fetching data</Paragraph>

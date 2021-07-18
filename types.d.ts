@@ -12,3 +12,10 @@ export type StepsT = StepT[];
 export interface ParsedUrlQuery {
   [key: string]: string | string[];
 }
+
+export interface ContactItem {
+  type: 'Video' | 'Phone' | 'Chat';
+  active: boolean;
+}
+
+export type ContactsT = Array<ContactItem>;
