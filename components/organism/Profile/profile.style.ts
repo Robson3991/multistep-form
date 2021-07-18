@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from 'components/atoms/Button';
 
 export const Header = styled.div`
   display: flex;
@@ -30,6 +31,25 @@ export const Skills = styled.div`
 `;
 
 export const Diseases = styled.div`
-  padding-right: 100px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  padding-right: 60px;
   border-right: 1px solid var(--color-grey);
+`;
+
+export const Contacts = styled.div`
+  flex-shrink: 0;
+  margin-left: 70px;
+`;
+
+export const Description = styled.p`
+  margin: 40px auto 0;
+  max-width: 550px;
+  text-align: center;
+`;
+
+export const ProfileButton = styled(Button)`
+  margin: 60px auto -80px;
 `;

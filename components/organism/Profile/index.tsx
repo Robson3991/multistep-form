@@ -6,6 +6,9 @@ import {
   Name,
   Skills,
   Diseases,
+  Contacts,
+  Description,
+  ProfileButton,
 } from './profile.style';
 import Wrapper from 'components/atoms/Wrapper';
 import Tag from 'components/atoms/Tag';
@@ -45,13 +48,14 @@ const Profile: React.FC<ProfileProps> = ({
             <Tag>{disease}</Tag>
           ))}
         </Diseases>
-        <div>
+        <Contacts>
           {contacts.map(({ type, active }) => (
             <Contact isActive={active} type={type} />
           ))}
-        </div>
+        </Contacts>
       </Skills>
-      <p>{description}</p>
+      <Description>{description}</Description>
+      <ProfileButton light>View profile</ProfileButton>
     </Wrapper>
   );
 };
